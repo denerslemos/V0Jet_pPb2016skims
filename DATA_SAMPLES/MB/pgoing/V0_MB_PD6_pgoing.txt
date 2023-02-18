@@ -1,0 +1,11 @@
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_1.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_2.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_3.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_4.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_5.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_6.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_7.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_8.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_9.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_10.root
+/eos/cms/store/group/phys_heavyions/ddesouza/DATA/PUstd/pPb/dataMB6pPb/pPb_MB6_11.root

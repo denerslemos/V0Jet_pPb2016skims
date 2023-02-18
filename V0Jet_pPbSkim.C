@@ -1665,7 +1665,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
         long long i_entry = -1;
         if(runLumiEvtToEntryMap.count(key) == 0) continue; // skip reco event if there is no event match
         else i_entry = runLumiEvtToEntryMap.at(key);
-
+		
 		// ========================================== //
 		//	Read the event to input trees	      //
 		// ========================================== //
@@ -1676,6 +1676,10 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		heavyIonTree->GetEntry(i_entry);
 		hltTree->GetEntry(i_entry);
 		skimTree->GetEntry(i_entry);
+
+		cout << " V0 event: " << V0_evt << endl;
+		cout << " Jet event: " << event << endl;
+
 
 		for(int iJetType = 0; iJetType < nJetTrees; iJetType++){jetTree[iJetType]->GetEntry(i_entry);}
 
