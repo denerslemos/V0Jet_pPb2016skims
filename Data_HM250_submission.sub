@@ -1,0 +1,19 @@
+universe   = vanilla
+getenv     = True
+executable = sub_skim.sh
++JobFlavour           = "tomorrow"
+requirements = (OpSysAndVer =?= "CentOS7")
+RequestCpus = 8
+
+log        = cond/HM250pgoing.log
+output     = cond/HM250pgoing.out
+error      = cond/HM250pgoing.err
+arguments = DATA_SAMPLES/HM250/pgoing/HM250_pgoing.txt DATA_SAMPLES/HM250/pgoing/V0_HM250_pgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/HM250_pgoing_skim.root 0
+queue
+
+log        = cond/HM250Pbgoing.log
+output     = cond/HM250Pbgoing.out
+error      = cond/HM250Pbgoing.err
+arguments = DATA_SAMPLES/HM250/Pbgoing/HM250_Pbgoing.txt DATA_SAMPLES/HM250/Pbgoing/V0_HM250_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/HM250_Pbgoing_skim.root 0
+queue
+

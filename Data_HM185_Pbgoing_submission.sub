@@ -1,0 +1,43 @@
+universe   = vanilla
+getenv     = True
+executable = sub_skim.sh
++JobFlavour           = "tomorrow"
+requirements = (OpSysAndVer =?= "CentOS7")
+RequestCpus = 8
+
+log        = cond/HM185PD1Pbgoing.log
+output     = cond/HM185PD1Pbgoing.out
+error      = cond/HM185PD1Pbgoing.err
+arguments = DATA_SAMPLES/HM185/Pbgoing/HM185_PD1_Pbgoing.txt DATA_SAMPLES/HM185/Pbgoing/V0_HM185_PD1_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/HM185_PD1_Pbgoing_skim.root 0
+queue
+
+log        = cond/HM185PD2Pbgoing.log
+output     = cond/HM185PD2Pbgoing.out
+error      = cond/HM185PD2Pbgoing.err
+arguments = DATA_SAMPLES/HM185/Pbgoing/HM185_PD2_Pbgoing.txt DATA_SAMPLES/HM185/Pbgoing/V0_HM185_PD2_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/HM185_PD2_Pbgoing_skim.root 0
+queue
+
+log        = cond/HM185PD3Pbgoing.log
+output     = cond/HM185PD3Pbgoing.out
+error      = cond/HM185PD3Pbgoing.err
+arguments = DATA_SAMPLES/HM185/Pbgoing/HM185_PD3_Pbgoing.txt DATA_SAMPLES/HM185/Pbgoing/V0_HM185_PD3_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/HM185_PD3_Pbgoing_skim.root 0
+queue
+
+log        = cond/HM185PD4Pbgoing.log
+output     = cond/HM185PD4Pbgoing.out
+error      = cond/HM185PD4Pbgoing.err
+arguments = DATA_SAMPLES/HM185/Pbgoing/HM185_PD4_Pbgoing.txt DATA_SAMPLES/HM185/Pbgoing/V0_HM185_PD4_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/HM185_PD4_Pbgoing_skim.root 0
+queue
+
+log        = cond/HM185PD5Pbgoing.log
+output     = cond/HM185PD5Pbgoing.out
+error      = cond/HM185PD5Pbgoing.err
+arguments = DATA_SAMPLES/HM185/Pbgoing/HM185_PD5_Pbgoing.txt DATA_SAMPLES/HM185/Pbgoing/V0_HM185_PD5_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/HM185_PD5_Pbgoing_skim.root 0
+queue
+
+log        = cond/HM185PD6Pbgoing.log
+output     = cond/HM185PD6Pbgoing.out
+error      = cond/HM185PD6Pbgoing.err
+arguments = DATA_SAMPLES/HM185/Pbgoing/HM185_PD6_Pbgoing.txt DATA_SAMPLES/HM185/Pbgoing/V0_HM185_PD6_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/HM185_PD6_Pbgoing_skim.root 0
+queue
+

@@ -1677,10 +1677,6 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		hltTree->GetEntry(i_entry);
 		skimTree->GetEntry(i_entry);
 
-		cout << " V0 event: " << V0_evt << endl;
-		cout << " Jet event: " << event << endl;
-
-
 		for(int iJetType = 0; iJetType < nJetTrees; iJetType++){jetTree[iJetType]->GetEntry(i_entry);}
 
 		heavyIonTreeOutput->Fill(); // fill event information

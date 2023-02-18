@@ -1,0 +1,126 @@
+universe   = vanilla
+getenv     = True
+executable = sub_skim.sh
++JobFlavour           = "tomorrow"
+requirements = (OpSysAndVer =?= "CentOS7")
+RequestCpus = 8
+
+log        = cond/MBPD1Pbgoing.log
+output     = cond/MBPD1Pbgoing.out
+error      = cond/MBPD1Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD1_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD1_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD1_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD2Pbgoing.log
+output     = cond/MBPD2Pbgoing.out
+error      = cond/MBPD2Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD2_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD2_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD2_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD3Pbgoing.log
+output     = cond/MBPD3Pbgoing.out
+error      = cond/MBPD3Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD3_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD3_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD3_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD4Pbgoing.log
+output     = cond/MBPD4Pbgoing.out
+error      = cond/MBPD4Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD4_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD4_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD4_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD5Pbgoing.log
+output     = cond/MBPD5Pbgoing.out
+error      = cond/MBPD5Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD5_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD5_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD5_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD6Pbgoing.log
+output     = cond/MBPD6Pbgoing.out
+error      = cond/MBPD6Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD6_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD6_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD6_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD7Pbgoing.log
+output     = cond/MBPD7Pbgoing.out
+error      = cond/MBPD7Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD7_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD7_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD7_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD8Pbgoing.log
+output     = cond/MBPD8Pbgoing.out
+error      = cond/MBPD8Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD8_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD8_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD8_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD9Pbgoing.log
+output     = cond/MBPD9Pbgoing.out
+error      = cond/MBPD9Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD9_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD9_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD9_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD10Pbgoing.log
+output     = cond/MBPD10Pbgoing.out
+error      = cond/MBPD10Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD10_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD10_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD10_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD11Pbgoing.log
+output     = cond/MBPD11Pbgoing.out
+error      = cond/MBPD11Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD11_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD11_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD11_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD12Pbgoing.log
+output     = cond/MBPD12Pbgoing.out
+error      = cond/MBPD12Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD12_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD12_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD12_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD13Pbgoing.log
+output     = cond/MBPD13Pbgoing.out
+error      = cond/MBPD13Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD13_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD13_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD13_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD14Pbgoing.log
+output     = cond/MBPD14Pbgoing.out
+error      = cond/MBPD14Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD14_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD14_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD14_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD15Pbgoing.log
+output     = cond/MBPD15Pbgoing.out
+error      = cond/MBPD15Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD15_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD15_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD15_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD16Pbgoing.log
+output     = cond/MBPD16Pbgoing.out
+error      = cond/MBPD16Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD16_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD16_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD16_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD17Pbgoing.log
+output     = cond/MBPD17Pbgoing.out
+error      = cond/MBPD17Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD7_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD17_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD17_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD18Pbgoing.log
+output     = cond/MBPD18Pbgoing.out
+error      = cond/MBPD18Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD18_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD18_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD18_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD19Pbgoing.log
+output     = cond/MBPD19Pbgoing.out
+error      = cond/MBPD19Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD19_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD19_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD19_Pbgoing_skim.root 0
+queue
+
+log        = cond/MBPD20Pbgoing.log
+output     = cond/MBPD20Pbgoing.out
+error      = cond/MBPD20Pbgoing.err
+arguments = DATA_SAMPLES/MB/Pbgoing/MB_PD20_Pbgoing.txt DATA_SAMPLES/MB/Pbgoing/V0_MB_PD20_Pbgoing.txt /eos/user/e/eprifti/JetV0_skims/Data/MB_PD20_Pbgoing_skim.root 0
+queue

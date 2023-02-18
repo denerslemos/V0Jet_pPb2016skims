@@ -21,7 +21,7 @@ void printwelcome(bool printout){
 	cout << "+                                                              +"         << endl;
 	cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"         << endl;
 	cout << "+                                                              +"         << endl;
-	cout << "+    Welcome to UIC-HENP XeXe skim code for Data and MC        +"         << endl;
+	cout << "+    Welcome to UIC-HENP V0Jet skim code for Data and MC       +"         << endl;
 	cout << "+            From Dener Lemos: dener.lemos@cern.ch             +"         << endl;
 	cout << "+                                                              +"         << endl;
 	cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"         << endl;
