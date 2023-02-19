@@ -20,7 +20,7 @@ Before compile the code you must check the [sub_skim.sh](https://github.com/dene
 
 Once this steps are done you can compile the code with
 ```
-g++ -O2 V0Jet_pPbSkim.C `root-config --libs` `root-config --cflags` -o V0Jet_pPb2016Skim
+g++ -O2 V0Jet_pPbSkim.C `root-config --libs` `root-config --cflags` -o V0Jet_pPbSkim
 ```
 This will create the executable: ```V0Jet_pPbSkim``` 
 
