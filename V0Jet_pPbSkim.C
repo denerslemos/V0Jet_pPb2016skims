@@ -1,5 +1,6 @@
 #include "call_libraries.h" // call libraries from ROOT and C++
 #include "uiclogo.h"	    // call UIC logo and initialization
+#include "ntrkoff.h"        // get Ntrk offline
 
 std::map<unsigned long long, int> runLumiEvtToEntryMap;
 unsigned long long keyFromRunLumiEvent(UInt_t run, UInt_t lumi, ULong64_t event);
@@ -58,6 +59,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	jetTree[1] = new TChain("ak4PFJetAnalyzer/t");
 	jetTree[2] = new TChain("akCs4PFJetAnalyzer/t");
 	jetTree[3] = new TChain("ak3PFJetAnalyzer/t");
+	TChain *trackTree = new TChain("ppTrack/trackTree");
 	// add all the trees to the chain
 	for (std::vector<TString>::iterator listIterator = file_name_vector.begin(); listIterator != file_name_vector.end(); listIterator++){
 		cout << "Adding file " << *listIterator << " to the chains" << endl;
@@ -903,6 +905,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	Float_t hiHFminus;			 // transverse energy sum of HF- tower;
 	Float_t ptHat;				 // pT hat
 	Float_t eventWeight;			 // jet weight in the tree
+	Int hiBin;
 
 	// Branches for HLT tree
 	// HLT
@@ -993,6 +996,39 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	Float_t genJetEtaArrayWTA[nJetTrees][nMaxJet] = {{0}};	// eta of all the generator level jets in an event with WTA axis
 	Int_t genJetSubidArray[nJetTrees][nMaxJet] = {{0}};     // subid of all the generator level jets in an event
 	Int_t genJetMatchIndexArray[nJetTrees][nMaxJet] = {{0}};// matched index of all the generator level jets in an event
+
+	// Branches for track tree
+	TBranch *nTracksBranch;									// Branch for number of tracks
+	TBranch *trackPtBranch;									// Branch for track pT
+	TBranch *trackPtErrorBranch;							// Branch for track pT error
+	TBranch *trackPhiBranch;								// Branch for track phi
+	TBranch *trackEtaBranch;								// Branch for track eta
+	TBranch *trackHighPurityBranch;							// Branch for high purity of the track
+	TBranch *trackVertexDistanceZBranch;			 		// Branch for track distance from primary vertex in z-direction
+	TBranch *trackVertexDistanceZErrorBranch;				// Branch for error for track distance from primary vertex in z-direction
+	TBranch *trackVertexDistanceXYBranch;					// Branch for track distance from primary vertex in xy-direction
+	TBranch *trackVertexDistanceXYErrorBranch; 				// Branch for error for track distance from primary vertex in xy-direction
+	TBranch *trackEnergyEcalBranch;							// Branch for track energy in ECal
+	TBranch *trackEnergyHcalBranch;							// Branch for track energy in HCal
+	TBranch *trackChargeBranch;								// Branch for track charge
+	TBranch *PixelnHitsTrackBranch;							// Branch for number of valid pixel hits for the track
+	
+	// Leaves for the track tree
+	Int_t nTracks;														// Number of tracks
+	Float_t trackPtArray[nMaxTrack] = {0};								// Array for track pT
+	Float_t trackPtErrorArray[nMaxTrack] = {0};							// Array for track pT errors
+	Float_t trackPhiArray[nMaxTrack] = {0};								// Array for track phis
+	Float_t trackEtaArray[nMaxTrack] = {0};								// Array for track etas
+	Bool_t trackHighPurityArray[nMaxTrack] = {0};						// Array for the high purity of tracks
+	Float_t trackVertexDistanceZArray[nMaxTrack] = {0};			 		// Array for track distance from primary vertex in z-direction
+	Float_t trackVertexDistanceZErrorArray[nMaxTrack] = {0};			// Array for error for track distance from primary vertex in z-direction
+	Float_t trackVertexDistanceXYArray[nMaxTrack] = {0};				// Array for track distance from primary vertex in xy-direction
+	Float_t trackVertexDistanceXYErrorArray[nMaxTrack] = {0}; 			// Array for error for track distance from primary vertex in xy-direction
+	Float_t trackEnergyEcalArray[nMaxTrack] = {0};						// Array for track energy in ECal
+	Float_t trackEnergyHcalArray[nMaxTrack] = {0};						// Array for track energy in HCal
+	Int_t trackChargeArray[nMaxTrack] = {0}; 										// Array for track charge
+	UChar_t PixelnHitsTrackArray[nMaxTrack] = {0}; 							// Array for number of valid pixel hits for the track
+
 
 	// ========================================== //
 	// Read all the branches from the input trees //
@@ -1127,6 +1163,33 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		}
 		
 	} // Loop over different jet collections
+
+	// Connect the branches to the track tree
+	trackTree->SetBranchStatus("*",0);
+
+	trackTree->SetBranchStatus("nTrk",1);
+	trackTree->SetBranchAddress("nTrk",&nTracks,&nTracksBranch);
+	trackTree->SetBranchStatus("highPurity",1);
+	trackTree->SetBranchAddress("highPurity",&trackHighPurityArray,&trackHighPurityBranch);
+	trackTree->SetBranchStatus("trkPt",1);
+	trackTree->SetBranchAddress("trkPt",&trackPtArray,&trackPtBranch);
+	trackTree->SetBranchStatus("trkPtError",1);
+	trackTree->SetBranchAddress("trkPtError",&trackPtErrorArray,&trackPtErrorBranch);
+	trackTree->SetBranchStatus("trkPhi",1);
+	trackTree->SetBranchAddress("trkPhi",&trackPhiArray,&trackPhiBranch);
+	trackTree->SetBranchStatus("trkEta",1);
+	trackTree->SetBranchAddress("trkEta",&trackEtaArray,&trackEtaBranch);
+	trackTree->SetBranchStatus("trkDz1",1);
+	trackTree->SetBranchAddress("trkDz1",&trackVertexDistanceZArray,&trackVertexDistanceZBranch);
+	trackTree->SetBranchStatus("trkDzError1",1);
+	trackTree->SetBranchAddress("trkDzError1",&trackVertexDistanceZErrorArray,&trackVertexDistanceZErrorBranch);
+	trackTree->SetBranchStatus("trkDxy1",1);
+	trackTree->SetBranchAddress("trkDxy1",&trackVertexDistanceXYArray,&trackVertexDistanceXYBranch);
+	trackTree->SetBranchStatus("trkDxyError1",1);
+	trackTree->SetBranchAddress("trkDxyError1",&trackVertexDistanceXYErrorArray,&trackVertexDistanceXYErrorBranch);
+	trackTree->SetBranchStatus("trkCharge",1);
+	trackTree->SetBranchAddress("trkCharge",&trackChargeArray,&trackChargeBranch);
+
 
 	// ========================================== //
 	//			 Define output trees
@@ -1510,6 +1573,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	heavyIonTreeOutput->Branch("vz",&vertexZ,"vz/F");
 	heavyIonTreeOutput->Branch("hiHFplus",&hiHFplus,"hiHFplus/F");
 	heavyIonTreeOutput->Branch("hiHFminus",&hiHFminus,"hiHFminus/F");
+	heavyIonTreeOutput->Branch("hiBin",&hiBin,"hiBin/I");
 	
 	// ptHat and event weight only for MC
 	if(is_MC){
@@ -1669,6 +1733,8 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		// ========================================== //
 		//	Read the event to input trees	      //
 		// ========================================== //
+		
+		int hiBin = get_Ntrkoff(nTracks, trackEtaArray, trackPtArray, trackChargeArray, trackHighPurityArray, trackPtErrorArray, trackVertexDistanceXYArray, trackVertexDistanceXYErrorArray, trackVertexDistanceZArray, trackVertexDistanceZErrorArray);
 
 		bool doescontainRecoJets = false; // to save only V0s in events with jets
 		bool doescontainGenJets = false;  // to save only gen V0s in events with gen jets
