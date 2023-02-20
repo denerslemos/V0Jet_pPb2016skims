@@ -905,7 +905,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	Float_t hiHFminus;			 // transverse energy sum of HF- tower;
 	Float_t ptHat;				 // pT hat
 	Float_t eventWeight;			 // jet weight in the tree
-	Int hiBin;
+	Int_t hiBin;
 
 	// Branches for HLT tree
 	// HLT
@@ -1008,12 +1008,10 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	TBranch *trackVertexDistanceZErrorBranch;				// Branch for error for track distance from primary vertex in z-direction
 	TBranch *trackVertexDistanceXYBranch;					// Branch for track distance from primary vertex in xy-direction
 	TBranch *trackVertexDistanceXYErrorBranch; 				// Branch for error for track distance from primary vertex in xy-direction
-	TBranch *trackEnergyEcalBranch;							// Branch for track energy in ECal
-	TBranch *trackEnergyHcalBranch;							// Branch for track energy in HCal
 	TBranch *trackChargeBranch;								// Branch for track charge
-	TBranch *PixelnHitsTrackBranch;							// Branch for number of valid pixel hits for the track
 	
 	// Leaves for the track tree
+	const Int_t nMaxTrack = 2000;
 	Int_t nTracks;														// Number of tracks
 	Float_t trackPtArray[nMaxTrack] = {0};								// Array for track pT
 	Float_t trackPtErrorArray[nMaxTrack] = {0};							// Array for track pT errors
@@ -1024,10 +1022,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	Float_t trackVertexDistanceZErrorArray[nMaxTrack] = {0};			// Array for error for track distance from primary vertex in z-direction
 	Float_t trackVertexDistanceXYArray[nMaxTrack] = {0};				// Array for track distance from primary vertex in xy-direction
 	Float_t trackVertexDistanceXYErrorArray[nMaxTrack] = {0}; 			// Array for error for track distance from primary vertex in xy-direction
-	Float_t trackEnergyEcalArray[nMaxTrack] = {0};						// Array for track energy in ECal
-	Float_t trackEnergyHcalArray[nMaxTrack] = {0};						// Array for track energy in HCal
 	Int_t trackChargeArray[nMaxTrack] = {0}; 										// Array for track charge
-	UChar_t PixelnHitsTrackArray[nMaxTrack] = {0}; 							// Array for number of valid pixel hits for the track
 
 
 	// ========================================== //
