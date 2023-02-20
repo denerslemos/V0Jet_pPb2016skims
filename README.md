@@ -24,7 +24,4 @@ g++ -O2 V0Jet_pPbSkim.C `root-config --libs` `root-config --cflags` -o V0Jet_pPb
 ```
 This will create the executable: ```V0Jet_pPbSkim``` 
 
-After that you will submit jobs by using the condor *.sub files using condor_submit, e.g., 
-```
-condor_submit Data_HM250_submission.sub
-``` 
+After that you will submit jobs by using HTCondor_submit.py, just text me to see how to submit jobs :).
