@@ -33,7 +33,7 @@ getenv     = True
 executable = sub_skim.sh
 +JobFlavour           = "tomorrow"
 requirements = (OpSysAndVer =?= "CentOS7")
-RequestCpus = 8
+RequestCpus = 2
 '''
 
 ''' Loop over files '''
