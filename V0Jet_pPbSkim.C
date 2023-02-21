@@ -67,6 +67,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		heavyIonTree->Add(*listIterator);
 		for(int iJetType = 0; iJetType < nJetTrees; iJetType++){jetTree[iJetType]->Add(*listIterator);}
 		skimTree->Add(*listIterator);
+		trackTree->Add(*listIterator);
 	}
 
 	// Read the input V0 file(s)
@@ -1721,25 +1722,26 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		unsigned long long key = keyFromRunLumiEvent((UInt_t)V0_run,(UInt_t)V0_lumi,(ULong64_t)V0_evt);
 		//if (key == 0) cout<<"V0 event "<<V0_evt<<endl;
 		//else cout<<"V0 key "<<key<<endl;
-        long long i_entry = -1;
-        if(runLumiEvtToEntryMap.count(key) == 0) continue; // skip reco event if there is no event match
-        else i_entry = runLumiEvtToEntryMap.at(key);
+        	long long i_entry = -1;
+        	if(runLumiEvtToEntryMap.count(key) == 0) continue; // skip reco event if there is no event match
+        	else i_entry = runLumiEvtToEntryMap.at(key);
 		
 		// ========================================== //
 		//	Read the event to input trees	      //
 		// ========================================== //
 		
-		int hiBin = get_Ntrkoff(nTracks, trackEtaArray, trackPtArray, trackChargeArray, trackHighPurityArray, trackPtErrorArray, trackVertexDistanceXYArray, trackVertexDistanceXYErrorArray, trackVertexDistanceZArray, trackVertexDistanceZErrorArray);
-
 		bool doescontainRecoJets = false; // to save only V0s in events with jets
 		bool doescontainGenJets = false;  // to save only gen V0s in events with gen jets
 		
 		heavyIonTree->GetEntry(i_entry);
 		hltTree->GetEntry(i_entry);
 		skimTree->GetEntry(i_entry);
+		trackTree->GetEntry(i_entry);
 
 		for(int iJetType = 0; iJetType < nJetTrees; iJetType++){jetTree[iJetType]->GetEntry(i_entry);}
 
+		int hiBin = get_Ntrkoff(nTracks, trackEtaArray, trackPtArray, trackChargeArray, trackHighPurityArray, trackPtErrorArray, trackVertexDistanceXYArray, trackVertexDistanceXYErrorArray, trackVertexDistanceZArray, trackVertexDistanceZErrorArray);
+		
 		heavyIonTreeOutput->Fill(); // fill event information
 		hltTreeOutput->Fill();      // HLT information
 		skimTreeOutput->Fill();		// filter information
