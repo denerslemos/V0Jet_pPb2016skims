@@ -1740,7 +1740,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 
 		for(int iJetType = 0; iJetType < nJetTrees; iJetType++){jetTree[iJetType]->GetEntry(i_entry);}
 
-		int hiBin = get_Ntrkoff(nTracks, trackEtaArray, trackPtArray, trackChargeArray, trackHighPurityArray, trackPtErrorArray, trackVertexDistanceXYArray, trackVertexDistanceXYErrorArray, trackVertexDistanceZArray, trackVertexDistanceZErrorArray);
+		hiBin = get_Ntrkoff(nTracks, trackEtaArray, trackPtArray, trackChargeArray, trackHighPurityArray, trackPtErrorArray, trackVertexDistanceXYArray, trackVertexDistanceXYErrorArray, trackVertexDistanceZArray, trackVertexDistanceZErrorArray);
 		
 		heavyIonTreeOutput->Fill(); // fill event information
 		hltTreeOutput->Fill();      // HLT information
