@@ -21,7 +21,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	bool is_MC; if(isMC == 0){is_MC = false;}else{is_MC = true;}
 
 	float jetptmin = 30.0;
-	float jetetamin = 2.1;
+	float jetetamin = 4.0;
 
 	float V0ptmin = 0.7;
 	float V0etamin = 2.4;
