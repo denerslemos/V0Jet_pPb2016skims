@@ -1882,16 +1882,6 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		K0s_dcaVector->clear();
 		K0s_vtxVector->clear();
 
-		gK0sTreeOutput->Branch("gK0s_pt","vector<double>", &gK0s_ptVector);
-		gK0sTreeOutput->Branch("gK0s_phi","vector<double>", &gK0s_phiVector);
-		gK0sTreeOutput->Branch("gK0s_eta","vector<double>", &gK0s_etaVector);
-		gK0sTreeOutput->Branch("gK0s_mass","vector<double>", &gK0s_massVector);
-		gK0sTreeOutput->Branch("gK0s_mom1","vector<double>", &gK0s_mom1Vector);
-		gK0sTreeOutput->Branch("gK0s_mom2","vector<double>", &gK0s_mom2Vector);
-		gK0sTreeOutput->Branch("gK0s_stat","vector<double>", &gK0s_statVector);
-		gK0sTreeOutput->Branch("gK0s_statmom1","vector<double>", &gK0s_statmom1Vector);
-		gK0sTreeOutput->Branch("gK0s_statmom2","vector<double>", &gK0s_statmom2Vector);
-
 		if(is_MC){
     		//loop over gen K0s
    			for(int igK0s = 0; igK0s < gK0s_pt->size(); igK0s++){
