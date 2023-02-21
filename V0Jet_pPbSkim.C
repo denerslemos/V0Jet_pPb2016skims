@@ -21,7 +21,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	bool is_MC; if(isMC == 0){is_MC = false;}else{is_MC = true;}
 
 	float jetptmin = 30.0;
-	float jetetamin = 3.0;
+	float jetetamin = 2.1;
 
 	float V0ptmin = 0.7;
 	float V0etamin = 2.4;
@@ -136,7 +136,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	TBranch *K0s_d2pxBranch; 
 	TBranch *K0s_d2pyBranch; 
 	TBranch *K0s_d2pzBranch; 
-	TBranch*K0s_d2MBranch; 
+	TBranch *K0s_d2MBranch; 
 	TBranch *K0s_d2NhitBranch;
 	TBranch *K0s_d2pterrBranch; 
 
@@ -1108,14 +1108,14 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		// Jet phi with E-scheme, WTA axes calculated later
 		jetTree[iJetType]->SetBranchStatus("jtphi",1);
 		jetTree[iJetType]->SetBranchAddress("jtphi",&jetPhiArray[iJetType],&jetPhiBranch[iJetType]);
-	    jetTree[iJetType]->SetBranchStatus("WTAphi",1);
-    	jetTree[iJetType]->SetBranchAddress("WTAphi",&jetPhiArrayWTA[iJetType],&jetPhiBranchWTA[iJetType]);
+	    	jetTree[iJetType]->SetBranchStatus("WTAphi",1);
+    		jetTree[iJetType]->SetBranchAddress("WTAphi",&jetPhiArrayWTA[iJetType],&jetPhiBranchWTA[iJetType]);
 		
 		// Jet eta with E-scheme, WTA axes calculated later
 		jetTree[iJetType]->SetBranchStatus("jteta",1);
 		jetTree[iJetType]->SetBranchAddress("jteta",&jetEtaArray[iJetType],&jetEtaBranch[iJetType]);
-    	jetTree[iJetType]->SetBranchStatus("WTAeta",1);
-    	jetTree[iJetType]->SetBranchAddress("WTAeta",&jetEtaArrayWTA[iJetType],&jetEtaBranchWTA[iJetType]);
+    		jetTree[iJetType]->SetBranchStatus("WTAeta",1);
+    		jetTree[iJetType]->SetBranchAddress("WTAeta",&jetEtaArrayWTA[iJetType],&jetEtaBranchWTA[iJetType]);
 	
 		// If we are looking at Monte Carlo, connect the reference pT and parton arrays
 		if(is_MC){
@@ -1144,12 +1144,12 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 			jetTree[iJetType]->SetBranchAddress("genpt",&genJetPtArray[iJetType],&genJetPtBranch[iJetType]);
 			jetTree[iJetType]->SetBranchStatus("genphi",1);
 			jetTree[iJetType]->SetBranchAddress("genphi",&genJetPhiArray[iJetType],&genJetPhiBranch[iJetType]);
-      		jetTree[iJetType]->SetBranchStatus("WTAgenphi",1);
-     		jetTree[iJetType]->SetBranchAddress("WTAgenphi",&genJetPhiArrayWTA[iJetType],&genJetPhiBranchWTA[iJetType]);
+      			jetTree[iJetType]->SetBranchStatus("WTAgenphi",1);
+     			jetTree[iJetType]->SetBranchAddress("WTAgenphi",&genJetPhiArrayWTA[iJetType],&genJetPhiBranchWTA[iJetType]);
 			jetTree[iJetType]->SetBranchStatus("geneta",1);
 			jetTree[iJetType]->SetBranchAddress("geneta",&genJetEtaArray[iJetType],&genJetEtaBranch[iJetType]);
-      		jetTree[iJetType]->SetBranchStatus("WTAgeneta",1);
-      		jetTree[iJetType]->SetBranchAddress("WTAgeneta",&genJetEtaArrayWTA[iJetType],&genJetEtaBranchWTA[iJetType]);
+      			jetTree[iJetType]->SetBranchStatus("WTAgeneta",1);
+      			jetTree[iJetType]->SetBranchAddress("WTAgeneta",&genJetEtaArrayWTA[iJetType],&genJetEtaBranchWTA[iJetType]);
 			jetTree[iJetType]->SetBranchStatus("genmatchindex",1);
 			jetTree[iJetType]->SetBranchAddress("genmatchindex",&genJetMatchIndexArray[iJetType],&genJetMatchIndexBranch[iJetType]);
 			jetTree[iJetType]->SetBranchStatus("gensubid",1);
@@ -1224,7 +1224,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	K0sTreeOutput->Branch("K0s_dxy1","vector<double>", &K0s_dxy1Vector);
 	K0sTreeOutput->Branch("K0s_dz1","vector<double>", &K0s_dz1Vector);
 	K0sTreeOutput->Branch("K0s_chi21","vector<double>", &K0s_chi21Vector);
-	K0sTreeOutput->Branch("K0s_chi21","vector<double>", &K0s_d1pxVector);
+	K0sTreeOutput->Branch("K0s_d1px","vector<double>", &K0s_d1pxVector);
 	K0sTreeOutput->Branch("K0s_d1py","vector<double>", &K0s_d1pyVector);
 	K0sTreeOutput->Branch("K0s_d1pz","vector<double>", &K0s_d1pzVector);
 	K0sTreeOutput->Branch("K0s_d1M","vector<double>", &K0s_d1MVector);
@@ -1307,7 +1307,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	LamTreeOutput->Branch("Lam_dxy1","vector<double>", &Lam_dxy1Vector);
 	LamTreeOutput->Branch("Lam_dz1","vector<double>", &Lam_dz1Vector);
 	LamTreeOutput->Branch("Lam_chi21","vector<double>", &Lam_chi21Vector);
-	LamTreeOutput->Branch("Lam_chi21","vector<double>", &Lam_d1pxVector);
+	LamTreeOutput->Branch("Lam_d1px","vector<double>", &Lam_d1pxVector);
 	LamTreeOutput->Branch("Lam_d1py","vector<double>", &Lam_d1pyVector);
 	LamTreeOutput->Branch("Lam_d1pz","vector<double>", &Lam_d1pzVector);
 	LamTreeOutput->Branch("Lam_d1M","vector<double>", &Lam_d1MVector);
