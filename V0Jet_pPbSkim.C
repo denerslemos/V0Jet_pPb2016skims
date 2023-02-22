@@ -89,10 +89,10 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	TChain *genCasTree;
 	TChain *genOmeTree;
 	if(is_MC){
-		genK0sTree = new TChain("HiGenParticleAna/my_treegK0s");
-		genLamTree = new TChain("HiGenParticleAna/my_treegLam");
-		genCasTree = new TChain("HiGenParticleAna/my_treegXi");
-		genOmeTree = new TChain("HiGenParticleAna/my_treegOm");
+		genK0sTree = new TChain("K0SAnalysis/my_treegK0s");
+		genLamTree = new TChain("K0SAnalysis/my_treegLam");
+		genCasTree = new TChain("K0SAnalysis/my_treegXi");
+		genOmeTree = new TChain("K0SAnalysis/my_treegOm");
 	}
 	// add all the trees to the chain
 	for (std::vector<TString>::iterator listIterator = file_name_vectorV0.begin(); listIterator != file_name_vectorV0.end(); listIterator++){
