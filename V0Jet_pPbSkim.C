@@ -23,7 +23,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	float jetptmin = 30.0;
 	float jetetamin = 4.0;
 
-	float V0ptmin = 0.7;
+	float V0ptmin = 0.5;
 	float V0etamin = 2.4;
 
 	TString outputFileName;
@@ -1746,7 +1746,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		hltTreeOutput->Fill();      // HLT information
 		skimTreeOutput->Fill();		// filter information
 
-    	// Fill jet histograms using basic jet cuts
+    		// Fill jet histograms using basic jet cuts
 		for(int iJetType = 0; iJetType < nJetTrees; iJetType++){
 		
 			iJetOutput = 0;
@@ -1811,11 +1811,11 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 				} // Generator level jet loop
 			} // If for filling generator jet loop
 			jetTreeOutput[iJetType]->Fill(); // Fill jets
-    	} // Loop over jet collections
+    		} // Loop over jet collections
 
-    	//loop over K0s
+    		//loop over K0s
    		for(int iK0s = 0; iK0s < K0s_pt->size(); iK0s++){
-
+			if(!doescontainRecoJets) continue; // remove non-jet events
 			if(TMath::Abs(K0s_eta->at(iK0s)) > V0etamin) continue; //eta acceptance
 			if(K0s_pt->at(iK0s) <= V0ptmin) continue;   //Minimum V0 pT
 
@@ -1848,11 +1848,11 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 			K0s_dcaVector->push_back(K0s_dca->at(iK0s));
 			K0s_vtxVector->push_back(K0s_vtx->at(iK0s));
 
-      	}
+      		}
       
-      	if(doescontainRecoJets) K0sTreeOutput->Fill();
+      		K0sTreeOutput->Fill();
 
-    	// Clear the vectors before the next event! Otherwise all the K0s pile up cumulatively
+    		// Clear the vectors before the next event! Otherwise all the K0s pile up cumulatively
 		K0s_dxy1Vector->clear();
 		K0s_dz1Vector->clear();
 		K0s_chi21Vector->clear();
@@ -1885,6 +1885,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		if(is_MC){
     		//loop over gen K0s
    			for(int igK0s = 0; igK0s < gK0s_pt->size(); igK0s++){
+				if(!doescontainGenJets) continue;
 				if(TMath::Abs(gK0s_eta->at(igK0s)) > V0etamin) continue; //eta acceptance
 				if(gK0s_eta->at(igK0s) <= V0ptmin) continue;   //Minimum V0 pT
 				gK0s_ptVector->push_back(gK0s_pt->at(igK0s));
@@ -1897,7 +1898,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 				gK0s_statmom1Vector->push_back(gK0s_statmom1->at(igK0s));
 				gK0s_statmom2Vector->push_back(gK0s_statmom2->at(igK0s));
 			}
-			if(doescontainGenJets) gK0sTreeOutput->Fill();
+			gK0sTreeOutput->Fill();
 			gK0s_ptVector->clear();
 			gK0s_phiVector->clear();
 			gK0s_etaVector->clear();
@@ -1911,7 +1912,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
  
     	//loop over Lambdas
    		for(int iLam = 0; iLam < Lam_pt->size(); iLam++){
-
+			if(!doescontainRecoJets) continue;
 			if(TMath::Abs(Lam_eta->at(iLam)) > V0etamin) continue; //eta acceptance
 			if(Lam_pt->at(iLam) <= V0ptmin) continue;   //Minimum V0 pT
 
@@ -1945,9 +1946,9 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 			Lam_vtxVector->push_back(Lam_vtx->at(iLam));
 			Lam_idVector->push_back(Lam_id->at(iLam));
 
-      	}
+      		}
       
-   		if(doescontainRecoJets) LamTreeOutput->Fill();
+   		LamTreeOutput->Fill();
 
     		// Clear the vectors before the next event! Otherwise all the Lam pile up cumulatively
 		Lam_dxy1Vector->clear();
@@ -1983,6 +1984,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 		if(is_MC){
     		//loop over gen Lam
    			for(int igLam = 0; igLam < gLam_pt->size(); igLam++){
+				if(!doescontainGenJets) continue;
 				if(TMath::Abs(gLam_eta->at(igLam)) > V0etamin) continue; //eta acceptance
 				if(gLam_eta->at(igLam) <= V0ptmin) continue;   //Minimum V0 pT
 				gLam_ptVector->push_back(gLam_pt->at(igLam));
@@ -1995,7 +1997,8 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 				gLam_statmom1Vector->push_back(gLam_statmom1->at(igLam));
 				gLam_statmom2Vector->push_back(gLam_statmom2->at(igLam));
 			}
-			if(doescontainGenJets) gLamTreeOutput->Fill();
+			gLamTreeOutput->Fill();
+			
 			gLam_ptVector->clear();
 			gLam_phiVector->clear();
 			gLam_etaVector->clear();
@@ -2009,7 +2012,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 
     	//loop over Xi
    		for(int iXi = 0; iXi < Xi_pt->size(); iXi++){
-
+			if(!doescontainRecoJets) continue;
 			if(TMath::Abs(Xi_eta->at(iXi)) > V0etamin) continue; //eta acceptance
 			if(Xi_pt->at(iXi) <= V0ptmin) continue;   //Minimum V0 pT
 
@@ -2051,52 +2054,53 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 			Xi_massVector->push_back(Xi_mass->at(iXi));
 			Xi_idVector->push_back(Xi_id->at(iXi));
 
-      	}
+      		}
       
-   		if(doescontainRecoJets) CasTreeOutput->Fill();
+   		CasTreeOutput->Fill();
 
     		// Clear the vectors before the next event! Otherwise all the Xi pile up cumulatively
-			Xi_d1ptVector->clear();
-			Xi_d1etaVector->clear();
-			Xi_d1phiVector->clear();
-			Xi_d1massVector->clear();
+		Xi_d1ptVector->clear();
+		Xi_d1etaVector->clear();
+		Xi_d1phiVector->clear();
+		Xi_d1massVector->clear();
 
-			Xi_chi21_1Vector->clear();
-			Xi_d1pt_1Vector->clear();
-			Xi_d1eta_1Vector->clear();
-			Xi_d1phi_1Vector->clear();
-			Xi_d1mass_1Vector->clear();
-			Xi_d1Nhit_1Vector->clear();
+		Xi_chi21_1Vector->clear();
+		Xi_d1pt_1Vector->clear();
+		Xi_d1eta_1Vector->clear();
+		Xi_d1phi_1Vector->clear();
+		Xi_d1mass_1Vector->clear();
+		Xi_d1Nhit_1Vector->clear();
 
-			Xi_chi21_2Vector->clear();
-			Xi_d1pt_2Vector->clear();
-			Xi_d1eta_2Vector->clear();
-			Xi_d1phi_2Vector->clear();
-			Xi_d1mass_2Vector->clear();
-			Xi_d1Nhit_2Vector->clear();
+		Xi_chi21_2Vector->clear();
+		Xi_d1pt_2Vector->clear();
+		Xi_d1eta_2Vector->clear();
+		Xi_d1phi_2Vector->clear();
+		Xi_d1mass_2Vector->clear();
+		Xi_d1Nhit_2Vector->clear();
 
-			Xi_chi22Vector->clear();
-			Xi_d2ptVector->clear();
-			Xi_d2etaVector->clear();
-			Xi_d2phiVector->clear();
-			Xi_d2massVector->clear();
-			Xi_d2NhitVector->clear();
+		Xi_chi22Vector->clear();
+		Xi_d2ptVector->clear();
+		Xi_d2etaVector->clear();
+		Xi_d2phiVector->clear();
+		Xi_d2massVector->clear();
+		Xi_d2NhitVector->clear();
 
-			Xi_cas3DIpSigValueVector->clear();
-			Xi_casPi3DIpSigValueVector->clear();
-			Xi_VTrkPi3DIpSigValueVector->clear();
-			Xi_VTrkP3DIpSigValueVector->clear();
-			Xi_casFlightSigValueVector->clear();
-			Xi_distanceSigValueVector->clear();
-			Xi_ptVector->clear();
-			Xi_etaVector->clear();
-			Xi_phiVector->clear();
-			Xi_massVector->clear();
-			Xi_idVector->clear();
+		Xi_cas3DIpSigValueVector->clear();
+		Xi_casPi3DIpSigValueVector->clear();
+		Xi_VTrkPi3DIpSigValueVector->clear();
+		Xi_VTrkP3DIpSigValueVector->clear();
+		Xi_casFlightSigValueVector->clear();
+		Xi_distanceSigValueVector->clear();
+		Xi_ptVector->clear();
+		Xi_etaVector->clear();
+		Xi_phiVector->clear();
+		Xi_massVector->clear();
+		Xi_idVector->clear();
 
 		if(is_MC){
     		//loop over gen Xi
    			for(int igXi = 0; igXi < gXi_pt->size(); igXi++){
+				if(!doescontainGenJets) continue;
 				if(TMath::Abs(gXi_eta->at(igXi)) > V0etamin) continue; //eta acceptance
 				if(gXi_eta->at(igXi) <= V0ptmin) continue;   //Minimum V0 pT
 				gXi_ptVector->push_back(gXi_pt->at(igXi));
@@ -2109,7 +2113,8 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 				gXi_statmom1Vector->push_back(gXi_statmom1->at(igXi));
 				gXi_statmom2Vector->push_back(gXi_statmom2->at(igXi));
 			}
-			if(doescontainGenJets) gCasTreeOutput->Fill();
+			gCasTreeOutput->Fill();
+			
 			gXi_ptVector->clear();
 			gXi_phiVector->clear();
 			gXi_etaVector->clear();
@@ -2123,7 +2128,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 
     	//loop over Omegas
    		for(int iOm = 0; iOm < Om_pt->size(); iOm++){
-
+			if(!doescontainRecoJets) continue;
 			if(TMath::Abs(Om_eta->at(iOm)) > V0etamin) continue; //eta acceptance
 			if(Om_pt->at(iOm) <= V0ptmin) continue;   //Minimum V0 pT
 
@@ -2165,53 +2170,54 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 			Om_massVector->push_back(Om_mass->at(iOm));
 			Om_idVector->push_back(Om_id->at(iOm));
 
-      	}
+      		}
       
-   		if(doescontainRecoJets) OmeTreeOutput->Fill();
+   		OmeTreeOutput->Fill();
 
     		// Clear the vectors before the next event! Otherwise all the Om pile up cumulatively
-			Om_d1ptVector->clear();
-			Om_d1etaVector->clear();
-			Om_d1phiVector->clear();
-			Om_d1massVector->clear();
+		Om_d1ptVector->clear();
+		Om_d1etaVector->clear();
+		Om_d1phiVector->clear();
+		Om_d1massVector->clear();
 
-			Om_chi21_1Vector->clear();
-			Om_d1pt_1Vector->clear();
-			Om_d1eta_1Vector->clear();
-			Om_d1phi_1Vector->clear();
-			Om_d1mass_1Vector->clear();
-			Om_d1Nhit_1Vector->clear();
+		Om_chi21_1Vector->clear();
+		Om_d1pt_1Vector->clear();
+		Om_d1eta_1Vector->clear();
+		Om_d1phi_1Vector->clear();
+		Om_d1mass_1Vector->clear();
+		Om_d1Nhit_1Vector->clear();
 
-			Om_chi21_2Vector->clear();
-			Om_d1pt_2Vector->clear();
-			Om_d1eta_2Vector->clear();
-			Om_d1phi_2Vector->clear();
-			Om_d1mass_2Vector->clear();
-			Om_d1Nhit_2Vector->clear();
+		Om_chi21_2Vector->clear();
+		Om_d1pt_2Vector->clear();
+		Om_d1eta_2Vector->clear();
+		Om_d1phi_2Vector->clear();
+		Om_d1mass_2Vector->clear();
+		Om_d1Nhit_2Vector->clear();
 
-			Om_chi22Vector->clear();
-			Om_d2ptVector->clear();
-			Om_d2etaVector->clear();
-			Om_d2phiVector->clear();
-			Om_d2massVector->clear();
-			Om_d2NhitVector->clear();
+		Om_chi22Vector->clear();
+		Om_d2ptVector->clear();
+		Om_d2etaVector->clear();
+		Om_d2phiVector->clear();
+		Om_d2massVector->clear();
+		Om_d2NhitVector->clear();
 
-			Om_cas3DIpSigValueVector->clear();
-			Om_casPi3DIpSigValueVector->clear();
-			Om_VTrkPi3DIpSigValueVector->clear();
-			Om_VTrkP3DIpSigValueVector->clear();
-			Om_casFlightSigValueVector->clear();
-			Om_distanceSigValueVector->clear();
-			Om_ptVector->clear();
-			Om_etaVector->clear();
-			Om_phiVector->clear();
-			Om_massVector->clear();
-			Om_idVector->clear();
+		Om_cas3DIpSigValueVector->clear();
+		Om_casPi3DIpSigValueVector->clear();
+		Om_VTrkPi3DIpSigValueVector->clear();
+		Om_VTrkP3DIpSigValueVector->clear();
+		Om_casFlightSigValueVector->clear();
+		Om_distanceSigValueVector->clear();
+		Om_ptVector->clear();
+		Om_etaVector->clear();
+		Om_phiVector->clear();
+		Om_massVector->clear();
+		Om_idVector->clear();
 
 
 		if(is_MC){
     		//loop over gen Om
    			for(int igOm = 0; igOm < gOm_pt->size(); igOm++){
+				if(!doescontainGenJets) continue;
 				if(TMath::Abs(gOm_eta->at(igOm)) > V0etamin) continue; //eta acceptance
 				if(gOm_eta->at(igOm) <= V0ptmin) continue;   //Minimum V0 pT
 				gOm_ptVector->push_back(gOm_pt->at(igOm));
@@ -2224,7 +2230,8 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 				gOm_statmom1Vector->push_back(gOm_statmom1->at(igOm));
 				gOm_statmom2Vector->push_back(gOm_statmom2->at(igOm));
 			}
-			if(doescontainGenJets) gOmeTreeOutput->Fill();
+			gOmeTreeOutput->Fill();
+			
 			gOm_ptVector->clear();
 			gOm_phiVector->clear();
 			gOm_etaVector->clear();
