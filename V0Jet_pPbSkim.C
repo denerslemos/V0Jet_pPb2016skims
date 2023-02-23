@@ -23,7 +23,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	float jetptmin = 30.0;
 	float jetetamin = 4.0;
 
-	float V0ptmin = 0.5;
+	float V0ptmin = 0.7;
 	float V0etamin = 2.4;
 
 	TString outputFileName;
