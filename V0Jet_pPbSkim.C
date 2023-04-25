@@ -23,7 +23,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
 	float jetptmin = 30.0;
 	float jetetamin = 4.0;
 
-	float V0ptmin = 0.7;
+	float V0ptmin = 1.0;
 	float V0etamin = 2.4;
 
 	TString outputFileName;
@@ -1887,7 +1887,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
    			for(int igK0s = 0; igK0s < gK0s_pt->size(); igK0s++){
 				if(!doescontainGenJets) continue;
 				if(TMath::Abs(gK0s_eta->at(igK0s)) > V0etamin) continue; //eta acceptance
-				if(gK0s_eta->at(igK0s) <= V0ptmin) continue;   //Minimum V0 pT
+				if(gK0s_pt->at(igK0s) < V0ptmin) continue;   //Minimum V0 pT
 				gK0s_ptVector->push_back(gK0s_pt->at(igK0s));
 				gK0s_phiVector->push_back(gK0s_phi->at(igK0s));
 				gK0s_etaVector->push_back(gK0s_eta->at(igK0s));
@@ -1914,7 +1914,7 @@ void V0Jet_pPbSkim(TString input_file, TString input_V0file, TString ouputfile, 
    		for(int iLam = 0; iLam < Lam_pt->size(); iLam++){
 			if(!doescontainRecoJets) continue;
 			if(TMath::Abs(Lam_eta->at(iLam)) > V0etamin) continue; //eta acceptance
-			if(Lam_pt->at(iLam) <= V0ptmin) continue;   //Minimum V0 pT
+			if(Lam_pt->at(iLam) < V0ptmin) continue;   //Minimum V0 pT
 
 			Lam_dxy1Vector->push_back(Lam_dxy1->at(iLam));
 			Lam_dz1Vector->push_back(Lam_dz1->at(iLam));
